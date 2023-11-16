@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- 
+C8: ランダムなバブル（普通）
+JavaScriptコードを記述して、10個のランダムな色の円を作成しなさい。
+これらは異なる位置に配置され、ページをリフレッシュするたびにランダムな色になります。CSS
+が必要な場合は、JavaScriptの一部として書くこと。
+10個以上の円を作成する場合、最初に作成されたバブルが削除される必要がある。すべてのバブ
+ルは画面内に収められるようにする必要がある。
+ -->
+  <canvas width="500" height="500"></canvas>
+  <script>
+    const canvas = document.querySelector("canvas")
+    const ctx = canvas.getContext("2d")
+
+    const randomNum = (min, max) => {
+      return Math.floor(Math.random() * (max - min - 1)) + min
+    }
+
+
+    const randomColor = () => {
+      return "#" + Math.floor(Math.random() * 16777215).toString(16)
+    }
+    for (let i = 0; i < 10; i++) {
+      const size = randomNum(10, 100)
+      ctx.beginPath()
+      ctx.fillStyle = randomColor()
+      ctx.arc(randomNum(size, canvas.width - size), randomNum(size, canvas.height - size), size, 0, 2 * Math.PI)
+      ctx.fill()
+    }
+
+  </script>
+</body>
+
+</html>

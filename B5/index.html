@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .shingo {
+      width: 300px;
+      height: 100px;
+      border-radius: 50px;
+      background-color: rgb(204, 204, 204);
+      position: relative;
+    }
+
+    .red,
+    .yellow,
+    .green {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      translate: -50% -50%;
+      opacity: 0.2;
+    }
+
+    .green {
+      background-color: green;
+      left: 20%;
+      animation: green 8s infinite;
+    }
+
+    .yellow {
+      background-color: yellow;
+      left: 50%;
+      animation: yellow 8s infinite;
+      animation-delay: 4s;
+    }
+
+    .red {
+      background-color: red;
+      left: 80%;
+      animation: red 8s infinite;
+      animation-delay: 5s;
+    }
+
+    @keyframes green {
+      0% {
+        opacity: 1;
+      }
+
+      49.9% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+
+      99.9% {
+        opacity: 0.2;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes yellow {
+      0% {
+        opacity: 1;
+      }
+
+      12.3% {
+        opacity: 1;
+      }
+
+      12.4% {
+        opacity: 0.2;
+      }
+
+      99.9% {
+        opacity: 0.2;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes red {
+      0% {
+        opacity: 1;
+      }
+
+      37.1% {
+        opacity: 1;
+      }
+
+      37.2% {
+        opacity: 0.2;
+      }
+
+      99.9% {
+        opacity: 0.2;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 
+B5: CSSアニメーション（普通）
+HTMLコードを変更せず。また、JavaScriptを使用せずに、提供されたテンプレートから信号機の
+アニメーションを再現しなさい。
+● 緑：4秒
+● 黄：1秒
+● 赤：3秒
+非アクティブなライトは透明度20％で表示すること。このアニメーションは無限に繰り返される
+必要がある。 -->
+
+
+  <div class="shingo">
+    <div class="green"></div>
+    <div class="yellow"></div>
+    <div class="red"></div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!--   
+C1: キーワードハイライター（普通）
+メディアファイルには、テキストの段落が提供されている。このテキストをHTMLページにコピー
+し、検索キーワードの機能を実装しなさい。
+● 検索ボタンがクリックされると、検索文字列に一致するすべての単語をハイライト表示
+● ハイライトの色はランダム
+● 検索は大文字と小文字を区別すること -->
+
+  <div>
+    <input type="text">
+    <button onclick="start()">start</button>
+    <button onclick="reset()">reset</button>
+  </div>
+
+  <div>
+    <p>メディアファイルには、テキストの段落が提供されている。このテキストをHTMLページにコピー
+      し、検索キーワードの機能を実装しなさい。</p>
+    <p>検索ボタンがクリックされると、検索文字列に一致するすべての単語をハイライト表示</p>
+    <p>ハイライトの色はランダム</p>
+    <p>検索は大文字と小文字を区別すること</p>
+  </div>
+
+  <script>
+    const pList = document.querySelectorAll("p")
+    const texts = [...pList].map(p => p.innerHTML)
+
+    const start = () => {
+      const inputValue = document.querySelector("input").value
+      reset()
+      pList.forEach((p, i) => [
+        p.innerHTML = p.innerHTML.replace(new RegExp(inputValue, "g"), () => {
+          return `<span style="background: ${randomColor()}">${inputValue}</span>`
+        })
+      ])
+
+    }
+    const reset = () => {
+      pList.forEach((p, i) => [
+        p.innerHTML = texts[i]
+      ])
+    }
+
+    const randomColor = () => {
+      return "#" + Math.floor(Math.random() * 16777215).toString(16)
+    }
+  </script>
+</body>
+
+</html>

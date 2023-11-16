@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- 
+  C7: キャンバスアニメーション（簡単）
+  キャンバスを使用して「W:400 x H:320」のコンテナ内に円形の図形を描画し、ブラウザウィンド
+  ウがリロードされると、円形のオブジェクトは左から右へ連続的に移動するアニメーションを実
+  装しなさい。
+ -->
+
+  <canvas width="400" height="320"></canvas>
+  <script>
+    const canvas = document.querySelector("canvas")
+    const ctx = canvas.getContext("2d")
+    let left = -20
+    setInterval(() => {
+      ctx.fillStyle = "#fff"
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.fill()
+      ctx.beginPath()
+      ctx.fillStyle = "#00ff00"
+      ctx.arc(left, canvas.height / 2, 30, 0, 2 * Math.PI)
+      ctx.fill()
+      left += 1
+    }, 10)
+  </script>
+</body>
+
+</html>

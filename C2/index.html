@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .back {
+      content: "";
+      background-color: rgba(128, 128, 128, 0.384);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      pointer-events: none;
+    }
+
+    .light {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      translate: -50% -50%;
+      background-color: rgba(255, 255, 255, 0.507);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.808);
+      z-index: 1;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 
+  C2: スポットライト（普通）
+  提供されたメディアを参照して、画像の上にマウスが移動したときにスポットライトを表示させ
+  なさい。
+  ● スポットライトは白色、半透明、ある程度のぼかし効果がある
+  ● マウスホイールを上下に動かすと、スポットライトのサイズがそれぞれ増減
+  ● プログラムは、スポットライトの寸法の最小サイズを10pxとして検出する必要がある
+  ● 常にマウスカーソルがスポットライトの中央にあること
+ -->
+
+  <img src="https://placehold.jp/600x400.png" alt="">
+  <div class="back">
+    <span class="light"></span>
+  </div>
+  <script>
+
+    const back = document.querySelector(".back")
+    const light = document.querySelector(".light")
+    const img = document.querySelector("img")
+
+    let flag = false
+    let size = 50
+
+
+    img.addEventListener("mouseenter", () => {
+      if (!flag) flag = true
+      back.style.display = "block"
+    })
+    img.addEventListener("mouseleave", () => {
+      if (flag) flag = false
+      back.style.display = "none"
+    })
+
+    document.addEventListener("mousemove", (e) => {
+      if (!flag) return
+      light.style.top = e.clientY + "px"
+      light.style.left = e.clientX + "px"
+    })
+
+    document.addEventListener("wheel", (e) => {
+      if (!flag) return
+
+      if (e.deltaY < 0) {
+        size += 10
+      } else {
+        if (size - 10 > 10) {
+          size -= 10
+        }
+      }
+      light.style.width = size + "px"
+      light.style.height = size + "px"
+
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      display: flex;
+    }
+
+    .box {
+      box-sizing: border-box;
+      border: 1px solid gray;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box:active {
+      border: 4px solid yellow;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 
+B1: CSSアクション（普通）
+4個のボックスが横並びしているページを作成しなさい。HTMLとCSSのみ利用できる。
+● 各ボックスのサイズは「W:80 x H:80」
+● ボックス内の文字は上下左右の中央に配置
+● 各ボックスをクリックすると、ボックスは黄色でハイライトされ、ボーダー幅を太くする -->
+
+  <div class="container">
+    <div class="box">text</div>
+    <div class="box">text</div>
+    <div class="box">text</div>
+    <div class="box">text</div>
+  </div>
+</body>
+
+</html>

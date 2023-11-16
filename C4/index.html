@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- 
+  C4: お絵かきツール（普通）
+  クライアントサイドのお絵かきツールを作成しなさい。ユーザーが自由に描画できるキャンバス
+  を提供します。
+  ● ユーザーが選択できるように、5つの異なる色のボタンを用意
+  ● デフォルトのキャンバスサイズは「W:300 × H:300」
+  ● 描画した内容を「jpg」ファイルとしてコンピュータに保存するためのボタン作成
+  ● 描画した内容を「png」ファイルとしてコンピュータに保存するためのボタン作成
+ -->
+
+  <canvas width="500" height="500"></canvas>
+  <div>
+    <button onclick="changeColor('black')">black</button>
+    <button onclick="changeColor('red')">red</button>
+    <button onclick="changeColor('green')">green</button>
+    <button onclick="changeColor('blue')">blue</button>
+    <button onclick="changeColor('yellow')">yellow</button>
+  </div>
+  <div>
+    <button onclick="save('jpg')">save jpg</button>
+    <button onclick="save('png')">save png</button>
+  </div>
+  <script>
+    const canvas = document.querySelector("canvas")
+    const ctx = canvas.getContext("2d")
+    let color = "black"
+    let flag = false
+
+    ctx.fillStyle = "white"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    canvas.addEventListener("mousedown", (e) => {
+      if (!flag) flag = true
+      ctx.beginPath()
+      ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
+    })
+
+    document.addEventListener("mouseup", (e) => {
+      if (flag) flag = false
+      ctx.beginPath()
+    })
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!flag) return
+      ctx.strokeStyle = color
+      ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
+      ctx.stroke()
+      ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop)
+    })
+
+    const changeColor = (nextColor) => {
+      color = nextColor
+    }
+
+    const save = (format) => {
+      const img = canvas.toDataURL("image/" + format)
+      const link = document.createElement("a")
+      link.download = "image." + format
+      link.href = img
+      link.click()
+
+    }
+  </script>
+</body>
+
+</html>
